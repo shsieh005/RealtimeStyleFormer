@@ -101,7 +101,7 @@ class VGG(nn.Module):
     def __init__(self, options):
         super(VGG, self).__init__()
         # vgg_pad
-        vgg_model = models.vgg16(pretrained=False)
+        vgg_model = models.vgg16(weights=None)
         vgg_model.load_state_dict(torch.load(options.path))
         vgg_model = vgg_model.features
         vgg = vgg16
@@ -268,7 +268,7 @@ class Slice(nn.Module):
         device = affine_transformation.get_device()
 
         N, _, H, W = guidemap.shape
-        hg, wg = torch.meshgrid([torch.arange(0, H), torch.arange(0, W)]) # [0,511] HxW
+        hg, wg = torch.meshgrid([torch.arange(0, H), torch.arange(0, W)], indexing='ij') # [0,511] HxW
         if device >= 0:
             hg = hg.to(device)
             wg = wg.to(device)

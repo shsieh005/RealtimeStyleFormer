@@ -22,15 +22,17 @@ if __name__ == '__main__':
     parser.add_argument('--dim', type=int, default=3)
     parser.add_argument('--resume', action='store_true')
     parser.add_argument('--init', type=str, default='kaiming')
-    parser.add_argument('--path', type=str, default='/data3/wuxiaolei/models/vgg16-397923af.pth')
+    parser.add_argument('--path', type=str, default='./data3/wuxiaolei/models/vgg16-397923af.pth')
     parser.add_argument('--tb_file', type=str, default='/data2/wuxiaolei/project/grid_exp/tensorboard')
     parser.add_argument('--sub_file', type=str, default='new')
 
     # dataset
     #parser.add_argument('--content_data_path', type=str, default='/data/dataset/Places/data_large')
-    parser.add_argument("--content_data_path", type=str, default="/data/dataset/wuxiaolei/COCO2014/train2014")
-    parser.add_argument('--style_data_path', type=str, default='/data/dataset/wuxiaolei/WikiArt/train')
-    parser.add_argument('--info_path', type=str, default='/data/dataset/wuxiaolei/WikiArt/train_info.csv')
+    # parser.add_argument("--content_data_path", type=str, default="/data/dataset/wuxiaolei/COCO2014/train2014")
+    # parser.add_argument('--style_data_path', type=str, default='/data/dataset/wuxiaolei/WikiArt/train')
+    # parser.add_argument('--info_path', type=str, default='/data/dataset/wuxiaolei/WikiArt/train_info.csv')
+    parser.add_argument("--content_data_path", type=str, default="../data/mscoco/train2014")
+    parser.add_argument('--style_data_path', type=str, default='../data/wikiart/Pointillism/')
 
     # data
     parser.add_argument('--image_size', type=int, default=256)
@@ -62,6 +64,7 @@ if __name__ == '__main__':
     parser.add_argument('--group_num', type=int, default=16)
     parser.add_argument('--alpha', type=float, default=0.8)
     parser.add_argument('--selection', type=str, default='Ax+b')
+    parser.add_argument('--inter_selection', type=str, default='A1x+b2')
 
     # seed
     parser.add_argument('--seed', type=int, default=123)

@@ -8,7 +8,7 @@ import numpy as np
 import torch
 
 import warnings
-
+import glob
 warnings.filterwarnings("error", category=UserWarning)
 
 import torchvision.transforms as transform
@@ -77,6 +77,9 @@ IMG_EXTENSIONS = [
 def is_image_file(filename):
     return any(filename.endswith(extension) for extension in IMG_EXTENSIONS)
 
+def get_all_images_from_directory(directory):
+    # glob helps in getting all image paths with given patterns
+    return glob.glob(os.path.join(directory, "*.*"))
 
 def make_datast(dir):
     images = []
@@ -111,7 +114,8 @@ def image_to_tensor(image, image_size):
 
 class ArtDataset():
     def __init__(self, opts, augmentor):
-        self.style_paths = read_image_path(opts.info_path, opts.style_data_path)
+        self.style_paths = get_all_images_from_directory(opts.style_data_path)
+        #self.style_paths = read_image_path(opts.info_path, opts.style_data_path)
         self.content_paths = make_datast(opts.content_data_path)
         self.image_size = opts.image_size
         # self.root = opts.style_data_path
